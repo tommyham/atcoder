@@ -1,0 +1,9 @@
+N,K,M=map(int,input().split())
+A=list(map(int,input().split()))
+n=M*N-sum(A)
+if(n>K):
+    print(-1)
+elif(n<=0):
+    print(0)
+else:
+    print(n)

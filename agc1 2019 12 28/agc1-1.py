@@ -1,0 +1,13 @@
+n=list(map[int,input().split()])
+count=0
+s=abs(n[2]-n[1])
+a=n[1]-1
+b=n[0]-n[2]
+if(s%2==0):
+    count=int(s/2)
+else:
+    if(a>b):
+        count=b+1+(s-1)/2
+    else:
+        count=a+1+(s-1)//2
+print(int(count))

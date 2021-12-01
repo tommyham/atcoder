@@ -1,0 +1,14 @@
+N=int(input())
+S=[0]*N
+T=[0]*N
+for i in range(N):
+    S[i],T[i]=input().split()
+X=int(input())
+count=0
+for i in S:
+    if(X==i):
+        break
+    else:
+        pass
+    count+=1
+print(sum(T[count:N]))
