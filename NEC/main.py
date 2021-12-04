@@ -63,50 +63,50 @@ def probD():
         if(S[l]=="."):
             K+=1
     print(ans)
-
-class unionfind():
-    def __init__(self, n):
-        self.n = n
-        self.parents = [-1] * n
+def probE():
+    class unionfind():
+        def __init__(self, n):
+            self.n = n
+            self.parents = [-1] * n
+        
+        def find(self, x):
+            if self.parents[x] < 0:
+                return x
+            else:
+                self.parents[x] = self.find(self.parents[x])
+                return self.parents[x]
+        
+        def union(self, x, y):
+            x = self.find(x)
+            y = self.find(y)
+            if x == y:
+                return
+            if self.parents[x] > self.parents[y]:
+                x, y = y, x
+            self.parents[x] += self.parents[y]
+            self.parents[y] = x
+        
+        def size(self, x):
+            return -self.parents[self.find(x)]
+        
+        def same(self, x, y):
+            return self.find(x) == self.find(y)
     
-    def find(self, x):
-        if self.parents[x] < 0:
-            return x
-        else:
-            self.parents[x] = self.find(self.parents[x])
-            return self.parents[x]
-    
-    def union(self, x, y):
-        x = self.find(x)
-        y = self.find(y)
-        if x == y:
-            return
-        if self.parents[x] > self.parents[y]:
-            x, y = y, x
-        self.parents[x] += self.parents[y]
-        self.parents[y] = x
-    
-    def size(self, x):
-        return -self.parents[self.find(x)]
-    
-    def same(self, x, y):
-        return self.find(x) == self.find(y)
-
-N,M=map(int,input().split())
-path=[[] for _ in range(N)]
-for i in range(M):
-    a,b=map(int,input().split())
-    path[a-1].append(b-1)
-ans=0
-uf=unionfind(N)
-ans2=[0]*N
-for i in range(N-1,-1,-1):
-    ans2[i]=ans
-    ans+=1
-    for j in path[i]:
-        a,b=uf.find(i),uf.find(j)
-        if a!=b:
-            uf.union(i,j)
-            ans-=1
-for i in ans2:
-    print(i)
+    N,M=map(int,input().split())
+    path=[[] for _ in range(N)]
+    for i in range(M):
+        a,b=map(int,input().split())
+        path[a-1].append(b-1)
+    ans=0
+    uf=unionfind(N)
+    ans2=[0]*N
+    for i in range(N-1,-1,-1):
+        ans2[i]=ans
+        ans+=1
+        for j in path[i]:
+            a,b=uf.find(i),uf.find(j)
+            if a!=b:
+                uf.union(i,j)
+                ans-=1
+    for i in ans2:
+        print(i)
