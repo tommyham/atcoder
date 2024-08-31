@@ -83,5 +83,8 @@ def main():
     N=int(input())
     A=list(map(int,input().split()))
 
+    print(A[::2])
+    print(A[1::2])
+
 if __name__ == "__main__":
     main()
